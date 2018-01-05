@@ -10,7 +10,6 @@ services:
       KUMULUZEE_SERVER_BASEURL: http://messaging:8086
     depends_on:
       - etcd
-      - users
 
   etcd:
       image: elcolio/etcd:2.0.10
@@ -41,6 +40,7 @@ services:
     depends_on:
       - postgres
       - etcd
+      - messaging
   postgres:
     image: postgres:10.0
     ports:

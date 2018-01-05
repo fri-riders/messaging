@@ -67,7 +67,7 @@ public class MessagingResource {
                 return Response.status(Response.Status.NOT_FOUND).entity("Sender of requested message not found.").build();
         }
         catch (Exception e) {
-            return Response.status(Response.Status.NOT_FOUND).entity("Sender of requested message not found.").build();
+            return Response.status(Response.Status.NOT_FOUND).entity(e.getMessage()).build();
         }
     }
 }

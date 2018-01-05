@@ -30,13 +30,13 @@ public class MessagingBean {
     private static Client client = ClientBuilder.newClient();
 
     @Inject
-    @DiscoverService(value="users", version = "*", environment = "dev", accessType = AccessType.DIRECT)
+    @DiscoverService(value="users", version = "1.0.x", environment = "dev")
     private Optional<String> usersUrl;
 
     public List<Message> getAllMessages(){
         List<Message> messages = Database.getMessages();
         if(messages != null && messages.size() > 0) {
-            logger.info("Found "+ messages.size() + " bookings.");
+            logger.info("Found "+ messages.size() + " messages.");
             return messages;
         }
         else {
@@ -51,7 +51,9 @@ public class MessagingBean {
     }
 
     public User getMessageSender(int mId) {
-        if (!this.usersUrl.isPresent()){
+        logger.info("IS URL: " + this.usersUrl.isPresent());
+        logger.info("URL: " + this.usersUrl.get());
+        if (this.usersUrl.isPresent()){
             Message m = this.getMessage(mId);
             if(m != null) {
                 try {
