@@ -1,0 +1,39 @@
+kumuluzee:
+  name: messaging
+  version: 1.0.0
+  env:
+    name: dev
+  server:
+    base-url: http://localhost:8086
+    http:
+      port: 8086
+  config:
+    start-retry-delay-ms: 500
+    max-retry-delay-ms: 900000
+    etcd:
+      hosts: http://192.168.99.100:2379
+  discovery:
+    ttl: 20
+    ping-interval: 15
+    etcd:
+      hosts: http://192.168.99.100:2379
+  health:
+    servlet:
+      mapping: /health
+      enabled: true
+    logs:
+      enabled: true
+      level: INFO
+      period-s: 30
+    checks:
+      disk-space-health-check:
+        threshold: 100000000
+  cors-filter:
+    servlet:
+      allow-origin: "*"
+  metrics:
+    web-instrumentation:
+      - name: metrics-endpoint
+        url-pattern: /metrics/*
+      - name: messaging-endpoint
+        url-pattern: /v1/messaging/*
