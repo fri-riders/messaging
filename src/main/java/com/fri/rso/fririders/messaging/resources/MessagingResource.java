@@ -26,6 +26,7 @@ public class MessagingResource {
     private MessagingBean messagingBean;
 
 
+
     @GET
     public Response getAllMessages() {
         logger.info("REST CALL: getAllMessages");
@@ -67,6 +68,18 @@ public class MessagingResource {
                 return Response.status(Response.Status.NOT_FOUND).entity("Sender of requested message not found.").build();
         }
         catch (Exception e) {
+            return Response.status(Response.Status.NOT_FOUND).entity(e.getMessage()).build();
+        }
+    }
+
+    @POST
+    public Response sendMessage(Message m){
+        logger.info("REST CALL: sendMessage.");
+        try {
+            messagingBean.sendMessage(m);
+            return Response.ok("Message successfully sent.").build();
+        }
+        catch (Exception e){
             return Response.status(Response.Status.NOT_FOUND).entity(e.getMessage()).build();
         }
     }

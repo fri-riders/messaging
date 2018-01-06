@@ -37,3 +37,24 @@ kumuluzee:
         url-pattern: /metrics/*
       - name: messaging-endpoint
         url-pattern: /v1/messaging/*
+  logs:
+    config-file: '<?xml version="1.0" encoding="UTF-8"?>
+                  <Configuration name="display-bookings">
+                      <Appenders>
+                          <Console name="console" target="SYSTEM_OUT">
+                              <PatternLayout pattern="%d %p %marker %m %X %ex %n"/>
+                          </Console>
+                      </Appenders>
+                      <Loggers>
+                          <Logger name="com.fri.rso.fririders.messaging.logging" level="info" additivity="false">
+                            <AppenderRef ref="console"/>
+                          </Logger>
+                          <!-- Default logger -->
+                          <Root level="info">
+                            <AppenderRef ref="console"/>
+                          </Root>
+                      </Loggers>
+                  </Configuration>'
+
+messaging-config:
+  healthy: true

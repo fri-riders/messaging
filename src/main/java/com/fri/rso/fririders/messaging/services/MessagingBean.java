@@ -93,4 +93,9 @@ public class MessagingBean {
     }
 
 
+    public void sendMessage(Message m) throws Exception{
+        Database.addMessage(m);
+    }
+
+
 }
