@@ -98,4 +98,19 @@ public class MessagingBean {
     }
 
 
+    public List<Message> getUserMessages(int uid, boolean sent) {
+        List<Message> msgs = new ArrayList<>();
+        for(Message m : Database.getMessages()){
+            if(sent) {    //sent
+                if (m.getSender() == uid)
+                    msgs.add(m);
+            }
+            else {    //received
+                if (m.getReceiver() == uid)
+                    msgs.add(m);
+            }
+        }
+        return msgs;
+    }
+
 }

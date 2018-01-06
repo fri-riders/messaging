@@ -26,7 +26,6 @@ public class MessagingResource {
     private MessagingBean messagingBean;
 
 
-
     @GET
     public Response getAllMessages() {
         logger.info("REST CALL: getAllMessages");
@@ -66,6 +65,40 @@ public class MessagingResource {
                 return Response.ok(sender).build();
             } else
                 return Response.status(Response.Status.NOT_FOUND).entity("Sender of requested message not found.").build();
+        }
+        catch (Exception e) {
+            return Response.status(Response.Status.NOT_FOUND).entity(e.getMessage()).build();
+        }
+    }
+
+    @GET
+    @Path("/{userId}/sent")
+    public Response getSentMessages(@PathParam("userId") int uId) {
+        logger.info("REST CALL: getSentMessages.");
+        try {
+            List<Message> messages = messagingBean.getUserMessages(uId, true);
+            if (messages != null) {
+                logger.info("Sent messages for user " + uId + " successfully retrieved ...");
+                return Response.ok(messages).build();
+            } else
+                return Response.status(Response.Status.NOT_FOUND).entity("Sent messages for requested user not found.").build();
+        }
+        catch (Exception e) {
+            return Response.status(Response.Status.NOT_FOUND).entity(e.getMessage()).build();
+        }
+    }
+
+    @GET
+    @Path("/{userId}/received")
+    public Response getReceivedMessages(@PathParam("userId") int uId) {
+        logger.info("REST CALL: getReceivedMessages.");
+        try {
+            List<Message> messages = messagingBean.getUserMessages(uId, false);
+            if (messages != null) {
+                logger.info("Received messages for user " + uId + " successfully retrieved ...");
+                return Response.ok(messages).build();
+            } else
+                return Response.status(Response.Status.NOT_FOUND).entity("Received messages for requested user not found.").build();
         }
         catch (Exception e) {
             return Response.status(Response.Status.NOT_FOUND).entity(e.getMessage()).build();
