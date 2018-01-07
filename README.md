@@ -1,5 +1,5 @@
 # Messaging
-`Last version: 0.1`
+`Last version: 0.2`
 ## Docker compose
 - Build app: mvn clean package
 - Run: docker-compose up --build
@@ -12,4 +12,7 @@ Example call: `{IP}:8086/v1/messages`
 * `GET: /v1/messages` Returns list of all messages
 * `GET: /v1/messages/{messageId}` Returns message with appropriate id
 * `GET: /v1/messages/{messageId}/sender` Returns sender of message with appropriate id
+* `GET: /v1/messages/{userId}/sent` Returns users sent messages
+* `GET: /v1/messages/{userId}/received` Returns users sent messages
+* `POST: /v1/messages` Inserts new message to the database
 

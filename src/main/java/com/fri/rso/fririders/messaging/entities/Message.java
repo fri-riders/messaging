@@ -11,6 +11,16 @@ public class Message {
     private boolean isRead;
     private Date sent;
 
+    public Message(){
+        this.id = 0;
+        this.sender = 0;
+        this.receiver = 0;
+        this.subject = null;
+        this.content = null;
+        this.isRead = false;
+        this.sent = null;
+    }
+
     public Message(long id, long sender, long receiver, String subject, String content, boolean isRead, Date sent) {
         this.id = id;
         this.sender = sender;

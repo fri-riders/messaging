@@ -28,9 +28,9 @@ spec:
           initialDelaySeconds: 20
           periodSeconds: 3
         ports:
-        - containerPort: 8080
+        - containerPort: 8086
           name: server
           protocol: TCP
         resources:
           requests:
-            cpu: 250m
+            cpu: 150m
