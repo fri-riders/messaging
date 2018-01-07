@@ -10,7 +10,7 @@ spec:
         app: messaging
     spec:
       containers:
-      - image: urosbajc/messaging:0.1
+      - image: urosbajc/messaging:0.2
         name: messaging
         env:
           - name: KUMULUZEE_DISCOVERY_CLUSTER
@@ -33,4 +33,4 @@ spec:
           protocol: TCP
         resources:
           requests:
-            cpu: 150m
+            cpu: 100m

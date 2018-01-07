@@ -16,3 +16,13 @@ Example call: `{IP}:8086/v1/messages`
 * `GET: /v1/messages/{userId}/received` Returns users sent messages
 * `POST: /v1/messages` Inserts new message to the database
 
+### Config
+* `GET: /v1/config` Returns all configurable values
+
+### Health
+* `GET: /health` Returns info about service health
+* `POST: /v1/health-demo/healthy` Changes config value `healthy` (parameter is boolean) 
+
+### Metrics
+* `GET: /metrics` Returns metrics
+
