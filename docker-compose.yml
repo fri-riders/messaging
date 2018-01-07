@@ -50,3 +50,14 @@ services:
       POSTGRES_USER: postgres
       POSTGRES_PASSWORD: postgres
       POSTGRES_DB: rsouser
+
+  auth:
+    image: tomisebjanic/rso-auth:1.0
+    ports:
+      - 8083:8083
+    environment:
+      KUMULUZEE_CONFIG_ETCD_HOSTS: http://etcd:2379
+      KUMULUZEE_DISCOVERY_ETCD_HOSTS: http://etcd:2379
+      KUMULUZEE_SERVER_BASEURL: http://auth:8083
+    depends_on:
+      - etcd
