@@ -8,6 +8,7 @@ import com.kumuluz.ee.discovery.annotations.DiscoverService;
 import com.kumuluz.ee.discovery.enums.AccessType;
 import com.kumuluz.ee.logs.LogManager;
 import com.kumuluz.ee.logs.Logger;
+import com.kumuluz.ee.logs.cdi.Log;
 
 import javax.enterprise.context.RequestScoped;
 import javax.inject.Inject;
@@ -23,6 +24,7 @@ import java.util.List;
 import java.util.Optional;
 
 @RequestScoped
+@Log
 public class MessagingBean {
 
     private Logger logger = LogManager.getLogger(MessagingBean.class.getName());
